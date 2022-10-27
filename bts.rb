@@ -37,21 +37,15 @@ class Tree
   end
 
   def find(value, node = @root)
-    if node.data == value
-      return node
-    elsif value < node.data && !node.left.nil?
-      return find(value, node.left)
-    elsif value > node.data && !node.right.nil?
-      return find(value, node.right)
-    else
-      return "#{value} not found"
-   end
+    return node if node.nil? || node.data == value
+    value < node.data ? find(value, node.left) : find(value, node.right)
   end
 
 end
 
 my_tree = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 my_tree.pretty_print
+
 p "testing find"
 p my_tree.find(8).to_s
 p my_tree.find(4).to_s
